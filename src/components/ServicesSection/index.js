@@ -47,16 +47,19 @@ const useStyles = makeStyles((theme) => ({
 	tabHeader: {
 		maxWidth: 920,
 		width: '100%',
-		margin: 'auto'
+		margin: 'auto',
+		borderRadius: '5px'
 	},
 	media: {
 		height: 0,
-		paddingTop: '70.25%' // 16:9
+		paddingTop: '70.25%',
+		borderRadius: '5px'
 	},
 	mediaContainer: {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
+
 		[theme.breakpoints.up(1024)]: {
 			justifyContent: 'start'
 		}
@@ -86,7 +89,8 @@ function TabPanel(props) {
 function a11yProps(index) {
 	return {
 		id: `services-tab-${index}`,
-		'aria-controls': `services-tabpanel-${index}`
+		'aria-controls': `services-tabpanel-${index}`,
+		'aria-label': `services-tab-${index}`
 	}
 }
 
