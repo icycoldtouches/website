@@ -170,7 +170,8 @@ const LatestWork = () => {
 		  <Container maxWidth={'lg'} className={`isotope ${classes.containerInner}`}>
 			  <FormControl className={`isotope__filter ${classes.filters}`}>
 				  {Filters.map(f => (
-					<Button variant={activeFilter === f.value ? 'contained' : 'outlined'} color={'primary'}
+					<Button variant={'contained'}
+					        color={activeFilter === f.value ? 'primary' : 'secondary'}
 					        value={f.label}
 					        key={`${f.label}_key`} onClick={() => setFilterKey(f.value)}
 					        onKeyDown={() => setFilterKey(f.value)}
