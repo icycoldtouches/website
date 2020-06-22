@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		paddingTop: '65px',
 		paddingLeft: '0',
-		paddingRight: '0'
+		paddingRight: '0',
+		overflow: 'hidden'
 	},
 	containerInner: {
 		height: '100%',

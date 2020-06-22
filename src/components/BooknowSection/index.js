@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(10, 2)
 	},
 	containerInner: {
-		padding: 0
+		padding: theme.spacing(0)
 	},
 	form: {
 		display: 'flex',
