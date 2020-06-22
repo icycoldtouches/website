@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		padding: theme.spacing(10, 2)
 	},
+	containerInner: {
+		padding: theme.spacing(0)
+	},
 	card: {
 		minWidth: 275,
 		backgroundColor: theme.palette.white.main,
@@ -73,7 +76,7 @@ const Pricing = () => {
 	return (
 	  <Container maxWidth={false} className={classes.container}>
 		  <SectionHeader data={data}/>
-		  <Container maxWidth={'lg'}>
+		  <Container maxWidth={'lg'} className={classes.containerInner}>
 			  <Grid container spacing={4}>
 				  <Grid item xs={12} md={4} className={classes.gridCenter}>
 					  <Card className={classes.card} variant="outlined" raised={true}>
