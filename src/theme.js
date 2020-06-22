@@ -2,6 +2,16 @@ import { createMuiTheme }      from '@material-ui/core'
 import { responsiveFontSizes } from '@material-ui/core/styles'
 
 let theme = createMuiTheme({
+	overrides: {
+		MuiInputBase: {
+			input: {
+				'&:-webkit-autofill': {
+					transitionDelay: '9999s',
+					transitionProperty: '#c8ae5e, #3a4051'
+				}
+			}
+		}
+	},
 	breakpoints: {
 		values: {
 			xs: 0,
