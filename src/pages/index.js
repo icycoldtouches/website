@@ -9,6 +9,7 @@ import LatestWork  from '../components/LatestWorkSection'
 import Services    from '../components/ServicesSection'
 import About       from '../components/AboutSection'
 import Pricing     from '../components/PricingSection'
+import Contact     from '../components/ContactSection'
 
 const IndexPage = ({ data }) => {
 	let images = [
@@ -71,6 +72,7 @@ const IndexPage = ({ data }) => {
 		  <Services/>
 		  <About/>
 		  <Pricing/>
+		  <Contact/>
 		  <main style={{ minHeight: '100vh' }}/>
 	  </Layout>
 	)
