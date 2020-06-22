@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(0)
 	},
 	hiddenFields: {
-		visibility: 'hidden'
+		visibility: 'hidden',
+		height: 0,
+		padding: theme.spacing(0)
 	},
 	input: {
 		width: '100%'
