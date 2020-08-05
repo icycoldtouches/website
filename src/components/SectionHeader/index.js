@@ -31,7 +31,7 @@ const SectionHeader = ({ data }) => {
 	const classes = useStyles()
 	return (
 	  <Container maxWidth={'md'} className={classes.container}>
-		  <Typography component={'h2'} variant={'h4'} gutterBottom className={classes.title}>
+		  <Typography component={'h2'} variant={'h3'} gutterBottom className={classes.title}>
 			  {data.title}
 		  </Typography>
 		  <Typography component={'p'} variant={'body2'} gutterBottom className={classes.subTitle}>

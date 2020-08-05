@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Isotope                        from 'isotope-layout'
 import { makeStyles }                 from '@material-ui/core/styles'
 import Container                      from '@material-ui/core/Container'
 import FormControl                    from '@material-ui/core/FormControl'
 import SectionHeader                  from '../SectionHeader'
 import Button                         from '@material-ui/core/Button'
-
-const imageOne = require('../../images/01_Nina & Sini/Medium/_DSC4612-Edit-2.jpeg')
-const imageTwo = require('../../images/02_Melanie & Lotte/Medium/_DSC4397.jpeg')
-const imageThree = require('../../images/03_Justine & Dragon/Medium/_DSC6133.jpeg')
-const imageFour = require('../../images/_DSC1391.jpeg')
-const imageFive = require('../../images/IMG_0139.jpeg')
-const imageSix = require('../../images/04_Corinna & Döbi/Medium/_DSC8160.jpeg')
-const imageSeven = require('../../images/05_Selina & Luc/Medium/_DSC9335-Edit.jpeg')
-const imageEight = require('../../images/_DSC1467.jpeg')
-const imageNine = require('../../images/_DSC3349.jpeg')
+import VisibilityIcon                 from '@material-ui/icons/Visibility'
+import { Link }                       from 'gatsby'
+import Typography                     from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -61,6 +54,30 @@ const useStyles = makeStyles((theme) => ({
 			}
 		}
 	},
+	link: {
+		position: 'absolute',
+		left: '50%',
+		top: '50%',
+		transform: 'translate(-50%, -50%)',
+		zIndex: 2,
+		color: 'transparent',
+		transition: 'all 300ms ease-in-out',
+		'& svg': {
+			fontSize: '4rem',
+			padding: theme.spacing(1)
+		}
+	},
+	title: {
+		position: 'absolute',
+		left: '50%',
+		top: '35%',
+		transform: 'translate(-50%, -50%)',
+		width: '100%',
+		textAlign: 'center',
+		zIndex: 2,
+		color: 'transparent',
+		transition: 'all 300ms ease-in-out'
+	},
 	itemOverlay: {
 		position: 'absolute',
 		left: 0,
@@ -69,72 +86,61 @@ const useStyles = makeStyles((theme) => ({
 		bottom: 0,
 		backgroundColor: 'transparent',
 		transition: 'all 300ms ease-in-out',
+		borderRadius: '4px',
 		'&:hover': {
-			backgroundColor: theme.palette.secondary.transparent
+			backgroundColor: theme.palette.secondary.transparent,
+			'& a': {
+				color: theme.palette.white.main
+			},
+			'& h2': {
+				color: theme.palette.white.main
+			}
 		}
 	}
 }))
 
-const LatestWork = () => {
+const LatestWork = ({ projects, page, title, subTitle, lang }) => {
 	const classes = useStyles()
 	const Filters = [
-		{ label: 'all', value: '*' },
-		{ label: 'dogs', value: 'dogs' },
-		{ label: 'horses', value: 'horses' },
-		{ label: 'nature', value: 'nature' }
+		{ label: 'all', value: '*' }
 	]
+
 	const data = {
-		title: 'My Recent Work',
-		subTitle: 'The bond you share with your horse or dog is like none other, and it’s a feeling you will always want to remember.'
+		title: title,
+		subTitle: subTitle
 	}
 
-	const Projects = [
-		{
-			className: 'isoItem',
-			'filter': ['all', 'horses'],
-			src: imageOne
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'horses'],
-			src: imageTwo
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'horses'],
-			src: imageThree
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'nature'],
-			src: imageFour
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'horses'],
-			src: imageFive
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'horses'],
-			src: imageSix
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'horses'],
-			src: imageSeven
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'nature'],
-			src: imageEight
-		},
-		{
-			className: 'isoItem',
-			'filter': ['all', 'dogs'],
-			src: imageNine
-		}
-	]
+	const Projects = []
+	const Categories = []
+
+	const projectLink = (page, lang, slug) => {
+		if (page === 'home' && lang === 'de') return `projekte/${slug}`
+		else if (page === 'home' && lang === 'en') return `en/project/${slug}`
+		else if (page === 'single' && lang === 'de') return `${slug}`
+		else return `${slug}`
+	}
+
+	projects.edges.map(node => {
+		const { projectSlug, projectTitle, projectImages, projectCategory } = node.node
+		Categories.push(projectCategory.categoryTitle.toLowerCase())
+		Projects.push(
+		  {
+			  className: 'isoItem',
+			  filter: ['all', `${projectCategory.categoryTitle.toLowerCase()}`],
+			  src: `${projectImages[0].fluid.src}`,
+			  title: `${projectTitle}`,
+			  link: projectLink(page, lang, projectSlug)
+		  }
+		)
+		return projects
+	})
+
+	const filteredCategories = Array.from(new Set(Categories))
+
+	filteredCategories.map(node => {
+		Filters.push({ label: node.toUpperCase(), value: node.toLowerCase() })
+		return filteredCategories
+	})
 
 	const [isotope, setIsotope] = useState(null)
 	const [filterKey, setFilterKey] = useState('*')
@@ -165,7 +171,7 @@ const LatestWork = () => {
 	)
 
 	return (
-	  <Container maxWidth={false} className={classes.container}>
+	  <Container maxWidth={false} className={classes.container} style={{ marginTop: page === 'single' ? '4rem' : '' }}>
 		  <SectionHeader data={data}/>
 		  <Container maxWidth={'lg'} className={`isotope ${classes.containerInner}`}>
 			  <FormControl className={`isotope__filter ${classes.filters}`}>
@@ -184,7 +190,14 @@ const LatestWork = () => {
 						<div key={index}
 						     className={`isotope__container--item ${project.filter[1]} ${project.filter[0]} ${project.className}`}
 						     style={{ backgroundImage: `url('${project.src}')` }}>
-							<div className={classes.itemOverlay}/>
+							<div className={classes.itemOverlay}>
+								<Typography variant={'h5'} color={'textPrimary'}
+								            component={'h2'} className={classes.title}>{project.title}</Typography>
+								<Link to={project.link} className={classes.link} title={`${project.title} photoshoot`}>
+									<VisibilityIcon/>
+								</Link>
+							</div>
+
 						</div>
 					  )
 				  })}

@@ -8,6 +8,8 @@ import Typography          from '@material-ui/core/Typography'
 import MoreIcon            from '@material-ui/icons/MoreVert'
 import { Link }            from 'gatsby-theme-material-ui'
 
+const logo = require('../../images/av-logo.svg')
+
 const useStyles = makeStyles((theme) => ({
 	grow: {
 		flexGrow: 1
@@ -18,11 +20,19 @@ const useStyles = makeStyles((theme) => ({
 		borderBottom: '2px solid',
 		borderBottomColor: theme.palette.background.default
 	},
+	toolBar: {
+		maxWidth: 1280,
+		margin: '0 auto ',
+		width: '100%'
+	},
 	navBar: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignItems: 'center'
+	},
+	logo: {
+		maxWidth: '200px'
 	},
 	menuItem: {
 		padding: theme.spacing(2),
@@ -77,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-const Header = () => {
+const Header = ({ lang }) => {
 	const classes = useStyles()
 
 	const [state, setState] = useState({
@@ -90,9 +100,12 @@ const Header = () => {
 		}
 
 		setState({ ...state, [anchor]: open })
+		console.log(state)
 	}
 
+
 	const mobileMenuId = 'mobile-menu'
+
 	const list = (anchor) => (
 	  <nav
 		className={classes.drawer}
@@ -101,26 +114,17 @@ const Header = () => {
 		onKeyDown={toggleDrawer(anchor, false)}
 		id={mobileMenuId}
 	  >
-
 		  <Typography variant={'h6'}>
-			  <Link to={'/'} className={classes.menuItem}
-			        activeClassName={classes.menuItemActive}>Home</Link>
+			  <Link to={lang === 'de' ? '/' : '/en/'} className={classes.menuItem}
+			        activeClassName={classes.menuItemActive}>{lang === 'de' ? `Startseite` : `Home`}</Link>
 		  </Typography>
 		  <Typography variant={'h6'}>
-			  <Link to={'/projects/'} className={classes.menuItem}
-			        activeClassName={classes.menuItemActive}>Projects</Link>
+			  <Link to={lang === 'de' ? '/projekte/' : '/en/projects/'} className={classes.menuItem}
+			        activeClassName={classes.menuItemActive}>{lang === 'de' ? `Projekte` : `Projects`}</Link>
 		  </Typography>
 		  <Typography variant={'h6'}>
-			  <Link to={'/pricing/'} className={classes.menuItem}
-			        activeClassName={classes.menuItemActive}>Pricing</Link>
-		  </Typography>
-		  <Typography variant={'h6'}>
-			  <Link to={'/blog/'} className={classes.menuItem}
-			        activeClassName={classes.menuItemActive}>Blog</Link>
-		  </Typography>
-		  <Typography variant={'h6'}>
-			  <Link to={'/contact/'} className={classes.menuItem}
-			        activeClassName={classes.menuItemActive}>Contact</Link>
+			  <Link to={lang === 'de' ? '/kontakt/' : '/en/contact/'} className={classes.menuItem}
+			        activeClassName={classes.menuItemActive}>{lang === 'de' ? `Kontakt` : `Contact`}</Link>
 		  </Typography>
 	  </nav>
 
@@ -135,32 +139,22 @@ const Header = () => {
 	return (
 	  <div className={classes.grow}>
 		  <AppBar className={classes.appBar} elevation={0}>
-			  <Toolbar>
-				  <Typography variant="h6" noWrap color={'textSecondary'} className={classes.title}>
-					  AV Photography
-				  </Typography>
+			  <Toolbar variant={'dense'} className={classes.toolBar}>
+				  <img src={logo} alt="logo" className={classes.logo}/>
 				  <div className={classes.grow}/>
 				  <div className={classes.sectionDesktop}>
 					  <nav className={classes.navBar}>
 						  <Typography variant={'h6'}>
-							  <Link to={'/'} className={classes.menuItem}
-							        activeClassName={classes.menuItemActive}>Home</Link>
+							  <Link to={lang === 'de' ? '/' : '/en/'} className={classes.menuItem}
+							        activeClassName={classes.menuItemActive}>{lang === 'de' ? `Startseite` : `Home`}</Link>
 						  </Typography>
 						  <Typography variant={'h6'}>
-							  <Link to={'/projects/'} className={classes.menuItem}
-							        activeClassName={classes.menuItemActive}>Projects</Link>
+							  <Link to={lang === 'de' ? '/projekte/' : '/en/projects/'} className={classes.menuItem}
+							        activeClassName={classes.menuItemActive}>{lang === 'de' ? `Projekte` : `Projects`}</Link>
 						  </Typography>
 						  <Typography variant={'h6'}>
-							  <Link to={'/pricing/'} className={classes.menuItem}
-							        activeClassName={classes.menuItemActive}>Pricing</Link>
-						  </Typography>
-						  <Typography variant={'h6'}>
-							  <Link to={'/blog/'} className={classes.menuItem}
-							        activeClassName={classes.menuItemActive}>Blog</Link>
-						  </Typography>
-						  <Typography variant={'h6'}>
-							  <Link to={'/contact/'} className={classes.menuItem}
-							        activeClassName={classes.menuItemActive}>Contact</Link>
+							  <Link to={lang === 'de' ? '/kontakt/' : '/en/contact/'} className={classes.menuItem}
+							        activeClassName={classes.menuItemActive}>{lang === 'de' ? `Kontakt` : `Contact`}</Link>
 						  </Typography>
 					  </nav>
 				  </div>
@@ -168,6 +162,8 @@ const Header = () => {
 					  <IconButton
 						aria-label="menu"
 						aria-controls={mobileMenuId}
+						aria-haspopup={true}
+						aria-expanded={state.right === false ? false : true}
 						onClick={toggleDrawer('right', true)}
 						color="inherit"
 					  >

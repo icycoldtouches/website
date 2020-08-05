@@ -27,13 +27,13 @@ const IndexPage = ({ data }) => {
 	  <Layout>
 		  <SEO
 			title="Home"
-			lang={'de'}
+			lang={'en'}
 			img={seoImage}
 		  />
-		  <Header lang={'de'}/>
+		  <Header lang={'en'}/>
 		  <Hero
 			data={data}
-			lang={'de'}
+			lang={'en'}
 		  />
 		  <About
 			about={data.about}
@@ -49,18 +49,18 @@ const IndexPage = ({ data }) => {
 			page={'home'}
 			title={homeRecentworkTitle}
 			subTitle={homeRecentworkSubTitle}
-			lang={'de'}
+			lang={'en'}
 		  />
 		  <Pricing
 			title={homePricingTitle}
 			prices={data.prices}
-			lang={'de'}
+			lang={'en'}
 		  />
 		  <Contact
 			title={homeContactTitle}
-			lang={'de'}
+			lang={'en'}
 		  />
-		  <Footer lang={'de'}/>
+		  <Footer lang={'en'}/>
 	  </Layout>
 	)
 }
@@ -69,7 +69,7 @@ export default IndexPage
 
 export const indexQuery = graphql`
     query {
-        slider: allContentfulProject(filter: {projectShowInSlider: {eq: true}, node_locale: {eq: "de"}}) {
+        slider: allContentfulProject(filter: {projectShowInSlider: {eq: true}, node_locale: {eq: "en"}}) {
             edges {
                 node {
                     projectSlug
@@ -92,7 +92,7 @@ export const indexQuery = graphql`
             }
         }
         projects: allContentfulProject(limit: 9 sort: {fields: projectDate, order: DESC} filter: {node_locale: {
-            eq: "de"
+            eq: "en"
         }}) {
             edges {
                 node {
@@ -111,7 +111,7 @@ export const indexQuery = graphql`
                 }
             }
         }
-        about: allContentfulAbout(filter: {node_locale: {eq: "de"}}) {
+        about: allContentfulAbout(filter: {node_locale: {eq: "en"}}) {
             edges {
                 node {
                     title
@@ -131,7 +131,7 @@ export const indexQuery = graphql`
                 }
             }
         }
-        animal: allContentfulServiceAnimalPhotography(filter: {node_locale: {eq: "de"}}) {
+        animal: allContentfulServiceAnimalPhotography(filter: {node_locale: {eq: "en"}}) {
             edges {
                 node {
                     description {
@@ -151,7 +151,7 @@ export const indexQuery = graphql`
                 }
             }
         }
-        business: allContentfulServiceBusinessPhotography(filter: {node_locale: {eq: "de"}}) {
+        business: allContentfulServiceBusinessPhotography(filter: {node_locale: {eq: "en"}}) {
             edges {
                 node {
                     title
@@ -171,7 +171,7 @@ export const indexQuery = graphql`
                 }
             }
         }
-        human: allContentfulServiceHumanPhotography(filter: {node_locale: {eq: "de"}}) {
+        human: allContentfulServiceHumanPhotography(filter: {node_locale: {eq: "en"}}) {
             edges {
                 node {
                     title
@@ -191,7 +191,7 @@ export const indexQuery = graphql`
                 }
             }
         }
-        prices: allContentfulPrice(filter: {node_locale: {eq: "de"}}, sort: {fields: sessionPrice}) {
+        prices: allContentfulPrice(filter: {node_locale: {eq: "en"}}, sort: {fields: sessionPrice}) {
             edges {
                 node {
                     title
@@ -205,7 +205,7 @@ export const indexQuery = graphql`
                 }
             }
         }
-        titles: allContentfulTitles(filter: {node_locale: {eq: "de"}}) {
+        titles: allContentfulTitles(filter: {node_locale: {eq: "en"}}) {
             edges {
                 node {
                     homeContactTitle

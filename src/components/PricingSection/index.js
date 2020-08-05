@@ -6,12 +6,13 @@ import Grid           from '@material-ui/core/Grid'
 import Card           from '@material-ui/core/Card'
 import CardActions    from '@material-ui/core/CardActions'
 import CardContent    from '@material-ui/core/CardContent'
-import CardHeader     from '@material-ui/core/CardHeader'
 import Button         from '@material-ui/core/Button'
 import Typography     from '@material-ui/core/Typography'
 import List           from '@material-ui/core/List'
+import CardHeader     from '@material-ui/core/CardHeader'
 import ListItem       from '@material-ui/core/ListItem'
 import ListItemText   from '@material-ui/core/ListItemText'
+import { Link }       from 'gatsby'
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -66,10 +67,10 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-const Pricing = () => {
+const Pricing = ({ title, lang, prices }) => {
 	const classes = useStyles()
 	const data = {
-		title: `Pricing`,
+		title: title,
 		subTitle: ``
 	}
 
@@ -78,101 +79,50 @@ const Pricing = () => {
 		  <SectionHeader data={data}/>
 		  <Container maxWidth={'lg'} className={classes.containerInner}>
 			  <Grid container spacing={4}>
-				  <Grid item xs={12} md={4} className={classes.gridCenter}>
-					  <Card className={classes.card} variant="outlined" raised={true}>
-						  <CardContent className={classes.cardContent}>
-							  <Typography className={classes.title} variant={'h5'} component={'h2'}
-							              color={'textSecondary'} gutterBottom>
-								  Single Session
-							  </Typography>
-							  <Typography component={'h3'} className={classes.price}>
-								  119€
-							  </Typography>
-							  <List component="ul" aria-label="single session included" className={classes.list}>
-								  <ListItem>
-									  <ListItemText primary={'2h of photographing'} className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'10-15 Photographs'} className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'extra 1h: €59'} className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={' 1h drive from Aachen'} className={classes.listItemText}/>
-								  </ListItem>
-							  </List>
-						  </CardContent>
-						  <CardActions className={classes.cardActions}>
-							  <Button size="small" variant={'contained'} color={'secondary'}>Learn More</Button>
-						  </CardActions>
-					  </Card>
-				  </Grid>
-				  <Grid item xs={12} md={4} className={classes.gridCenter}>
-					  <Card className={classes.card} variant="outlined" raised={true}>
-						  <CardHeader title={'Popular Choice'} className={classes.cardHeader}/>
-						  <CardContent className={classes.cardContent}>
-							  <Typography className={classes.title} variant={'h5'} component={'h2'}
-							              color={'textSecondary'} gutterBottom>
-								  Full Service
-							  </Typography>
-							  <Typography component={'h3'} className={classes.price}>
-								  359€
-							  </Typography>
-							  <Typography component={'p'} className={classes.listItemText}>
-								  Everything in single service plus:
-							  </Typography>
-							  <List component="ul" aria-label="full service included" className={classes.list}>
-								  <ListItem>
-									  <ListItemText primary={'electronically compiled album included'}
-									                className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'Album Print Out on hardcover'} secondary={'28x21cm'}
-									                className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'Poster Print Out on Canvas'} secondary={'80x60cm'}
-									                className={classes.listItemText}/>
-								  </ListItem>
-							  </List>
-						  </CardContent>
-						  <CardActions className={classes.cardActions}>
-							  <Button size="small" variant={'contained'} color={'secondary'}>Learn More</Button>
-						  </CardActions>
-					  </Card>
-				  </Grid>
-				  <Grid item xs={12} md={4} className={classes.gridCenter}>
-					  <Card className={classes.card} variant="outlined" raised={true}>
-						  <CardContent className={classes.cardContent}>
-							  <Typography className={classes.title} variant={'h5'} component={'h2'}
-							              color={'textSecondary'} gutterBottom>
-								  Day Session
-							  </Typography>
-							  <Typography component={'h3'} className={classes.price}>
-								  899€
-							  </Typography>
-							  <List component="ul" aria-label="day session included" className={classes.list}>
-								  <ListItem>
-									  <ListItemText primary={'8h - 10h of photographing'}
-									                className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'100 - 150 Photographs'} className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'extra 1h: €59'} className={classes.listItemText}/>
-								  </ListItem>
-								  <ListItem>
-									  <ListItemText primary={'3h drive from Aachen'} className={classes.listItemText}/>
-								  </ListItem>
-							  </List>
-						  </CardContent>
-						  <CardActions className={classes.cardActions}>
-							  <Button size="small" variant={'contained'} color={'secondary'}>Learn More</Button>
-						  </CardActions>
-					  </Card>
-				  </Grid>
+				  {prices.edges.map(({ node }, index) => (
+					<Grid key={index} item xs={12} md={4} className={classes.gridCenter}>
+						<Card className={classes.card} variant="outlined" raised={true}>
+							{node.popular === true ? (
+							  <CardHeader title={lang === 'de' ? 'Beliebte Wahl' : 'Popular Choice'}
+							              className={classes.cardHeader}/>) : (<></>)}
+							<CardContent className={classes.cardContent}>
+								<Typography className={classes.title} variant={'h5'} component={'h2'}
+								            color={'textPrimary'} gutterBottom>
+									{node.title}
+								</Typography>
+								<Typography component={'h3'} className={classes.price}>
+									{node.sessionPrice}€
+								</Typography>
+								{node.includesService === true ? (
+								  <Typography component={'p'} className={classes.listItemText}>
+									  {lang === 'de' ? 'Alles in einer einzigen Sitzung plus:' : 'Everything in single service plus:'}
+								  </Typography>
+								) : (
+								  <>
+								  </>
+								)}
+								<List component="ul" aria-label="full service included" className={classes.list}>
+									{node.included.map((item, index) => (
+									  <ListItem key={index}>
+										  <ListItemText
+											primary={
+												<Typography variant={'body2'} component={'p'} color={'textPrimary'}>
+													{item}
+												</Typography>
+											}
+											className={classes.listItemText}/>
+									  </ListItem>
+									))}
+								</List>
+							</CardContent>
+							<CardActions className={classes.cardActions}>
+								<Button variant={'contained'} component={Link} color={'secondary'} size="small"
+								        to={lang === 'de' ? `kontakt` : `contact`}
+								        aria-label={'book this session.'}>{lang === 'de' ? `Jetzt buchen` : `Book Now`}</Button>
+							</CardActions>
+						</Card>
+					</Grid>
+				  ))}
 			  </Grid>
 		  </Container>
 	  </Container>

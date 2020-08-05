@@ -10,6 +10,45 @@ let theme = createMuiTheme({
 					transitionProperty: '#c8ae5e, #3a4051'
 				}
 			}
+		},
+		MuiCssBaseline: {
+			'@global': {
+				h1: {
+					fontFamily: 'Shadows Into Light',
+					fontWeight: 400
+				},
+				h2: {
+					fontFamily: 'Shadows Into Light',
+					fontWeight: 400
+				},
+				h3: {
+					fontFamily: 'Shadows Into Light',
+					fontWeight: 400
+				},
+				h4: {
+					fontFamily: 'Shadows Into Light',
+					fontWeight: 400
+				},
+				h5: {
+					fontFamily: 'Shadows Into Light',
+					fontWeight: 400
+				},
+				h6: {
+					fontFamily: 'Shadows Into Light',
+					fontWeight: 400
+				},
+				p: {
+					fontSize: '1.2rem',
+					fontFamily: 'Raleway',
+					fontWeight: 300
+				},
+				'@media (min-width: 600px)':
+				  {
+					  p: {
+						  fontSize: '1.3986rem'
+					  }
+				  }
+			}
 		}
 	},
 	breakpoints: {
@@ -23,7 +62,8 @@ let theme = createMuiTheme({
 			tablet: 768,
 			desktop: 1280
 		}
-	},
+	}
+	,
 	typography: {
 		fontFamily: [
 			'-apple-system',
@@ -45,81 +85,136 @@ let theme = createMuiTheme({
 			fontSize: '16px',
 			fontFamily: 'Raleway',
 			fontWeight: 300
-		},
+		}
+		,
 		body2: {
 			fontSize: '14px',
-			fontFamily: 'Raleway',
-			fontWeight: 300
-		},
-		h1: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400
-		},
-		h2: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400
-		},
-		h3: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400
-		},
-		h4: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400
-		},
-		h5: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400
-		},
-		h6: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400
-		},
-		subtitle1: {
-			fontFamily: 'Raleway',
-			fontWeight: 400
-		},
-		subtitle2: {
-			fontFamily: 'Raleway',
-			fontWeight: 500
-		},
-		button: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 500,
-			letterSpacing: '1px'
-		},
-		caption: {
-			fontFamily: 'Shadows Into Light',
-			fontWeight: 400,
-			letterSpacing: '1.2px'
-		},
-		overline: {
-			fontFamily: 'Raleway',
-			fontWeight: 400
-		}
-	},
-	palette: {
-		primary: {
-			main: '#3a4051'
-		},
-		secondary: {
-			main: '#c8ae5e',
-			transparent: 'rgba(58, 64, 81, 0.6)'
-		},
-		white: {
-			main: '#ffffff'
-		},
-		gray: {
-			main: '#424242'
-		},
-		tonalOffset: 0.3,
-		background: {
-			paper: '#3a4051'
-		},
-		text: {
-			reversed: '#c8ae5e'
-		}
+			fontFamily
+:
+'Raleway',
+  fontWeight
+:
+300
+}
+,
+h1: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400
+}
+,
+h2: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400
+}
+,
+h3: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400
+}
+,
+h4: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400
+}
+,
+h5: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400
+}
+,
+h6: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400
+}
+,
+subtitle1: {
+	fontFamily: 'Raleway',
+	  fontWeight
+:
+	400
+}
+,
+subtitle2: {
+	fontFamily: 'Raleway',
+	  fontWeight
+:
+	500
+}
+,
+button: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	500,
+	  letterSpacing
+:
+	'1px'
+}
+,
+caption: {
+	fontFamily: 'Shadows Into Light',
+	  fontWeight
+:
+	400,
+	  letterSpacing
+:
+	'1.2px',
+	  display
+:
+	'block'
+}
+,
+overline: {
+	fontFamily: 'Raleway',
+	  fontWeight
+:
+	400
+}
+}
+,
+palette: {
+	primary: {
+		main: '#3a4051'
 	}
+,
+	secondary: {
+		main: '#c8ae5e',
+		  transparent
+	:
+		'rgba(58, 64, 81, 0.6)'
+	}
+,
+	white: {
+		main: '#ffffff'
+	}
+,
+	gray: {
+		main: '#424242'
+	}
+,
+	tonalOffset: 0.3,
+	  background
+:
+	{
+		paper: '#3a4051'
+	}
+,
+	text: {
+		reversed: '#c8ae5e'
+	}
+}
 })
 
 theme = responsiveFontSizes(theme)

@@ -1,5 +1,6 @@
 import React          from 'react'
 import Img            from 'gatsby-image'
+import { Link }       from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
 import Container      from '@material-ui/core/Container'
 import Card           from '@material-ui/core/Card'
@@ -18,29 +19,29 @@ const useStyles = makeStyles((theme) => ({
 	},
 	containerInner: {
 		height: '100%',
-		maxHeight: '60vh',
-		minHeight: '60vh',
+		maxHeight: '80vh',
+		minHeight: '80vh',
 		position: 'relative',
 		[theme.breakpoints.up('md')]: {
 			maxHeight: '70vh',
 			minHeight: '70vh'
 		},
 		[theme.breakpoints.up('lg')]: {
-			maxHeight: '100vh',
-			minHeight: '100vh'
+			maxHeight: '80vh',
+			minHeight: '80vh'
 		}
 	},
 	containerImage: {
 		height: '100%',
-		maxHeight: '60vh',
-		minHeight: '60vh',
+		maxHeight: '80vh',
+		minHeight: '80vh',
 		[theme.breakpoints.up('md')]: {
 			maxHeight: '70vh',
 			minHeight: '70vh'
 		},
 		[theme.breakpoints.up('lg')]: {
-			maxHeight: '100vh',
-			minHeight: '100vh'
+			maxHeight: '80vh',
+			minHeight: '80vh'
 		}
 	},
 	containerOverlay: {
@@ -64,10 +65,9 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-const Hero = ({ data }) => {
+const Hero = ({ data, lang }) => {
 	const classes = useStyles()
-
-	const images = data
+	const { slider } = data
 
 	const settings = {
 		dots: false,
@@ -89,32 +89,38 @@ const Hero = ({ data }) => {
 	return (
 	  <Container maxWidth={false} className={classes.container}>
 		  <Slider {...settings}>
-			  {images.map((image, index) => {
+			  {slider.edges.map((node, index) => {
+				  const { projectTitle, projectDescription, projectImages, projectSlug } = node.node
+
+				  const heroImage = projectImages[0]
+				  const { fluid, description } = heroImage
+
 				  return (
 					<div className={classes.containerInner} key={index}>
 						<div className={classes.containerOverlay}/>
-						<Img fluid={image.image.childImageSharp.fluid} alt={image.imageAlt}
-						     className={classes.containerImage}/>
+						<Img fluid={fluid} alt={description} className={classes.containerImage}/>
 						<Container maxWidth={'md'} style={{
 							position: 'absolute',
-							bottom: '50%',
-							transform: 'translateY(50%)',
+							top: '50%',
+							left: '50%',
+							transform: 'translate(-50%, -50%)',
 							zIndex: 2
 						}}>
 							<Card className={classes.card} elevation={0}>
 								<CardContent>
-									<Typography component={'h2'} variant={'h4'} className={classes.title}
+									<Typography component={'h2'} variant={'h3'} className={classes.title}
 									            color="textSecondary" gutterBottom>
-										{image.title}
+										{projectTitle}
 									</Typography>
 									<Typography variant="body2" component="p">
-										{image.description}
-										<br/>
-										{image.secondaryDescription}
+										<span
+										  dangerouslySetInnerHTML={{ __html: projectDescription.childMarkdownRemark.excerpt }}/>
 									</Typography>
 								</CardContent>
 								<CardActions>
-									<Button variant={'contained'} color={'secondary'} size="small">Learn More</Button>
+									<Button variant={'contained'} component={Link} color={'secondary'} size="small"
+									        to={lang === 'de' ? `projekte/${projectSlug}` : `en/projects/${projectSlug}`}
+									        aria-label={'learn more about this project.'}>{lang === 'de' ? `Mehr Informationen` : `Learn More`}</Button>
 								</CardActions>
 							</Card>
 						</Container>
