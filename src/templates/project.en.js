@@ -10,10 +10,11 @@ import PrevNextProject from '../components/PrevNextProject'
 
 const Project = ({ data, pageContext }) => {
 	const { projectCategory, projectClient, projectDate, projectDescription, projectImages, projectLocation, projectTitle } = data.allContentfulProject.edges[0].node
+	const seoImage = projectImages[0].fluid.src
 	return (
 	  <Layout>
 		  <SEO title={projectTitle} lang={'en'} projectDescription={projectDescription.childMarkdownRemark.html}
-		       isProject={true}/>
+		       isProject={true} img={seoImage}/>
 		  <Header lang={'en'}/>
 		  <ProjectCard
 			projectTitle={projectTitle}

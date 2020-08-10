@@ -24,7 +24,6 @@ function SEO({ lang, meta, title, img, projectDescription, isProject }) {
 	  `
 	)
 
-	console.log(projectDescription)
 	const description = lang === 'de'
 	  ?
 	  `

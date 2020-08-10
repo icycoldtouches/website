@@ -12,6 +12,7 @@ const ProjectsPage = ({ data }) => {
 		projectsTitle, projectSubTitle, projectContactTitle,
 		projectContactSubTitle
 	} = data.titles.edges[0].node
+
 	return (
 	  <Layout>
 		  <SEO title={projectsTitle} lang={'de'}/>

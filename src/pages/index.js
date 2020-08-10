@@ -21,7 +21,6 @@ const IndexPage = ({ data }) => {
 		homeServicesTitle
 	} = data.titles.edges[0].node
 
-	console.log(data)
 	const seoImage = data.slider.edges[0].node.projectImages[0].fluid.src
 
 	return (
