@@ -14,6 +14,7 @@ import Footer      from '../components/Footer'
 const IndexPage = ({ data }) => {
 	const {
 		homeContactTitle,
+		homePricingSubTitle,
 		homePricingTitle,
 		homeRecentworkSubTitle,
 		homeRecentworkTitle,
@@ -53,6 +54,7 @@ const IndexPage = ({ data }) => {
 		  />
 		  <Pricing
 			title={homePricingTitle}
+			subTitle={homePricingSubTitle}
 			prices={data.prices}
 			lang={'en'}
 		  />
@@ -209,10 +211,15 @@ export const indexQuery = graphql`
             edges {
                 node {
                     homeContactTitle
+                    homePricingSubTitle
                     homePricingTitle
                     homeRecentworkSubTitle
                     homeRecentworkTitle
                     homeServicesTitle
+                    projectContactSubTitle
+                    projectContactTitle
+                    projectSubTitle
+                    projectsTitle
                 }
             }
         }
