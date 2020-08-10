@@ -115,7 +115,7 @@ const LatestWork = ({ projects, page, title, subTitle, lang }) => {
 
 	const projectLink = (page, lang, slug) => {
 		if (page === 'home' && lang === 'de') return `projekte/${slug}`
-		else if (page === 'home' && lang === 'en') return `en/project/${slug}`
+		else if (page === 'home' && lang === 'en') return `/en/project/${slug}`
 		else if (page === 'single' && lang === 'de') return `${slug}`
 		else return `${slug}`
 	}
