@@ -140,7 +140,9 @@ const Header = ({ lang }) => {
 	  <div className={classes.grow}>
 		  <AppBar className={classes.appBar} elevation={0}>
 			  <Toolbar variant={'dense'} className={classes.toolBar}>
-				  <img src={logo} alt="logo" className={classes.logo}/>
+				  <Typography variant={'h1'} component={'h1'}>
+					  <Link to={lang === 'de' ? '/' : '/en/'} className={classes.menuItem}>Alexandra Vlad</Link>
+				  </Typography>
 				  <div className={classes.grow}/>
 				  <div className={classes.sectionDesktop}>
 					  <nav className={classes.navBar}>
