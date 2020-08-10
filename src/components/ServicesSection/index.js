@@ -180,16 +180,12 @@ const Services = ({ title, animal, business, human }) => {
 							  </Typography>
 							  <br/>
 							  <br/>
-							  <Typography component={'span'} variant={'body1'} color={'primary'}>
-								  Capturing the eyes and the mimic of a human is like an invitation and sacred
-								  permission to look into their soul.
-							  </Typography>
-							  <br/>
-							  {' '}<br/>
-							  <Typography component={'span'} variant={'body1'} color={'primary'}>
-								  Looking back at some of the photographs I took,
-								  I remember the laughter and even bits of the conversation I had with the person.
-							  </Typography>
+							  <Typography
+								component={'span'}
+								dangerouslySetInnerHTML={{ __html: human.description.childMarkdownRemark.html }}
+								variant={'body1'}
+								color={'primary'}
+							  />
 						  </Grid>
 					  </Grid>
 				  </TabPanel>
