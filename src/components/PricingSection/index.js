@@ -67,11 +67,11 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-const Pricing = ({ title, lang, prices }) => {
+const Pricing = ({ title, subTitle, lang, prices }) => {
 	const classes = useStyles()
 	const data = {
 		title: title,
-		subTitle: ``
+		subTitle: subTitle
 	}
 
 	return (
