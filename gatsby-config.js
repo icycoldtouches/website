@@ -79,13 +79,11 @@ module.exports = {
 				// The property ID; the tracking code won't be generated without it
 				trackingId: 'UA-174590387-1',
 				// Defines where to place the tracking script - `true` in the head and `false` in the body
-				head: false,
+				head: true,
 				// Setting this parameter is optional
 				anonymize: true,
 				// Setting this parameter is also optional
 				respectDNT: true,
-				// Avoids sending pageview hits from custom paths
-				exclude: ['/preview/**', '/do-not-track/me/too/'],
 				// Delays sending pageview hits on route update (in milliseconds)
 				pageTransitionDelay: 0,
 				// Defers execution of google analytics script after page load
@@ -111,18 +109,18 @@ module.exports = {
 				]
 			}
 		},
-		// {
-		//   resolve: `gatsby-plugin-manifest`,
-		//   options: {
-		//     name: `gatsby-starter-default`,
-		//     short_name: `starter`,
-		//     start_url: `/`,
-		//     background_color: `#c8ae5e`,
-		//     theme_color: `#c8ae5e`,
-		//     display: `minimal-ui`,
-		//     icon: `src/images/gatsby-icon.png`,
-		//   },
-		// },
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: `Alexandra Vlad Photography`,
+				short_name: `AV Photography`,
+				start_url: `/`,
+				background_color: `#c8ae5e`,
+				theme_color: `#c8ae5e`,
+				display: `minimal-ui`,
+				icon: `src/images/photo-camera.png`
+			}
+		},
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
 		`gatsby-plugin-offline`
