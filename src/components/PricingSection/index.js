@@ -93,14 +93,6 @@ const Pricing = ({ title, subTitle, lang, prices }) => {
 								<Typography component={'h3'} className={classes.price}>
 									{node.sessionPrice}€
 								</Typography>
-								{node.includesService === true ? (
-								  <Typography component={'p'} className={classes.listItemText}>
-									  {lang === 'de' ? 'Alles in einer einzigen Sitzung plus:' : 'Everything in single service plus:'}
-								  </Typography>
-								) : (
-								  <>
-								  </>
-								)}
 								<List component="ul" aria-label="full service included" className={classes.list}>
 									{node.included.map((item, index) => (
 									  <ListItem key={index}>
@@ -118,7 +110,7 @@ const Pricing = ({ title, subTitle, lang, prices }) => {
 							<CardActions className={classes.cardActions}>
 								<Button variant={'contained'} component={Link} color={'secondary'} size="small"
 								        to={lang === 'de' ? `kontakt` : `contact`}
-								        aria-label={'book this session.'}>{lang === 'de' ? `Jetzt buchen` : `Book Now`}</Button>
+								        aria-label={'book this session.'}>{lang === 'de' ? `Kontakt aufnehmen` : `Contact me`}</Button>
 							</CardActions>
 						</Card>
 					</Grid>
